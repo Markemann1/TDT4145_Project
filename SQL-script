@@ -1,0 +1,68 @@
+#Brukerhistorier som trenger SQL-script:
+#Databasen skal kunne registrere data om alle jernbanestrekninger i Norge. Dere skal legge inn data for Nordlandsbanen (som vist i figuren). Dette kan gjøres med et skript, dere trenger ikke å programmere støtte for denne funksjonaliteten.
+
+#Følgende data om jernbanestrekninger ble lagt til i databasen:
+sqlite> .open togdatabase
+sqlite> UPDATE Delstrekning SET Startstasjon="Steinkjer" WHERE StrekningsID="STK-MSJ";
+sqlite> INSERT INTO Delstrekning VALUES ("TRD-STK", "01:52:00", 120, "dobbeltspor", "Trondheim", "Steinkjer");
+sqlite> INSERT INTO Delstrekning VALUES ("STK-MSJ", "03:29:00", 280, "enkeltspor", "Steinkjer", "Mosjøen");
+sqlite> INSERT INTO Delstrekning VALUES ("MSJ-MIR", "01:11:00", 90, "enkeltspor", "Mosjøen", "Mo I Rana");
+sqlite> INSERT INTO Delstrekning VALUES ("MIR-FSK", "02:18:00", 170, "enkeltspor", "Mo I Rana", "Fauske");
+sqlite> INSERT INTO Delstrekning VALUES ("FSK-BOD", "00:45:00", 60, "enkeltspor", "Fauske", "Bodø");
+sqlite> INSERT INTO Stasjon VALUES ("Trondheim", 5);
+sqlite> INSERT INTO Stasjon VALUES ("Steinkjer", 4);
+sqlite> INSERT INTO Stasjon VALUES ("Mosjøen", 7);
+sqlite> INSERT INTO Stasjon VALUES ("Mo i Rana", 4);
+sqlite> INSERT INTO Stasjon VALUES ("Fauske", 34);
+sqlite> INSERT INTO Stasjon VALUES ("Bodø", 4);
+sqlite> INSERT INTO Togrute VALUES ("TRD-BOD-dag", "Dagtog Trondheim-Bodø", "07:49:00", "Mandag", "Trondheim", "Bodø", "SJ", "Nordlandsbanen");
+sqlite> INSERT INTO Togrute VALUES ("TRD-BOD-natt", "Nattog Trondheim-Bodø", "23:05:00", "Mandag", "Trondheim", "Bodø", "SJ", "Nordlandsbanen");
+sqlite> INSERT INTO Togruteforekomst VALUES ("TRD-BOD-dag", "03.04.2023");
+sqlite> INSERT INTO Togruteforekomst VALUES ("TRD-BOD-natt", "03.04.2023");
+sqlite> INSERT INTO Togoperatør VALUES ("SJ", 20, 12);
+sqlite> INSERT INTO Sete VALUES (1,1);
+sqlite> INSERT INTO Sete VALUES (2,1);
+sqlite> INSERT INTO Sete VALUES (3,1);
+sqlite> INSERT INTO Sete VALUES (4,1);
+sqlite> INSERT INTO Sete VALUES (5,1);
+sqlite> INSERT INTO Sete VALUES (6,1);
+sqlite> INSERT INTO Sete VALUES (7,1);
+sqlite> INSERT INTO Sete VALUES (8,1);
+sqlite> INSERT INTO Sete VALUES (9,1);
+sqlite> INSERT INTO Sete VALUES (10,1);
+sqlite> INSERT INTO Sete VALUES (11,1);
+sqlite> INSERT INTO Sete VALUES (12,1);
+sqlite> INSERT INTO Seng VALUES (1,1);
+sqlite> INSERT INTO Seng VALUES (2,1);
+sqlite> INSERT INTO Seng VALUES (3,1);
+sqlite> INSERT INTO Seng VALUES (4,1);
+sqlite> INSERT INTO Seng VALUES (5,1);
+sqlite> INSERT INTO Seng VALUES (6,1);
+sqlite> INSERT INTO Seng VALUES (7,1);
+sqlite> INSERT INTO Seng VALUES (8,1);
+sqlite> INSERT INTO Sovevogn VALUES (1,4,8);
+sqlite> INSERT INTO Sittevogn VALUES (1,6,12);
+sqlite> INSERT INTO DelAvStrekning VALUES ("Nordlandsbanen", "TRD-STK");
+sqlite> INSERT INTO DelAvStrekning VALUES ("Nordlandsbanen", "STK-MSJ");
+sqlite> INSERT INTO DelAvStrekning VALUES ("Nordlandsbanen", "MSJ-MIR");
+sqlite> INSERT INTO DelAvStrekning VALUES ("Nordlandsbanen", "MIR-FSK");
+sqlite> INSERT INTO DelAvStrekning VALUES ("Nordlandsbanen", "FSK-BOD");
+sqlite> INSERT INTO Togrute VALUES ("MIR-TRD-mor", "Morgentog Mo i Rana - Trondheim", "08:11:00", "Mandag", "Mo i Rana", "Trondheim", "SJ", "Nordlandsbanen"); 
+sqlite> INSERT INTO StrekningIRute VALUES ("TRD-BOD-dag", "TRD-STK");
+sqlite> INSERT INTO StrekningIRute VALUES ("TRD-BOD-dag", "STK-MSJ");
+sqlite> INSERT INTO StrekningIRute VALUES ("TRD-BOD-dag", "MSJ-MIR");
+sqlite> INSERT INTO StrekningIRute VALUES ("TRD-BOD-dag", "MIR-FSK");
+sqlite> INSERT INTO StrekningIRute VALUES ("TRD-BOD-dag", "FSK-BOD");
+sqlite> INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt", "FSK-BOD");
+sqlite> INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt", "MIR-FSK");
+sqlite> INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt", "MSJ-MIR");
+sqlite> INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt", "STK-MSJ");
+sqlite> INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt", "TRD-STK");
+sqlite> INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor", "TRD-STK");
+sqlite> INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor", "STK-MSJ");
+sqlite> INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor", "MSJ-MIR");
+sqlite> INSERT INTO Togruteforekomst VALUES ("MIR-TRD-mor", "03.04.2023");
+sqlite> .quit
+
+
+
