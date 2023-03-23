@@ -12,10 +12,10 @@ interface()
 # *   For en bruker skal man kunne finne all informasjon om de kjøpene hen har gjort for fremtidige reiser. Denne funksjonaliteten skal programmeres.
 
 #Eksempel på kode for å utføre en spørring til en SQL-database:
-con = sqlite3.connect("prosjekt_P1.sql")
-cursor=con.cursor()
-cursor.execute("SELECT * FROM Togrute")
-con.close()
+#con = sqlite3.connect("prosjekt_P1.sql")
+#cursor=con.cursor()
+#cursor.execute("SELECT * FROM Togrute")
+#con.close()
 
 
 
