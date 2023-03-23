@@ -88,6 +88,47 @@ INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt-tir", "TRD-STK");
 INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-tir", "STK-TRD");
 INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-tir", "MSJ-STK");
 INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-tir", "MIR-MSJ");
+CREATE TABLE StasjonPåRute (
+  TogruteID VARCHAR(30) NOT NULL,
+  Stasjonsnavn VARCHAR(30) NOT NULL,
+  Avgangstid TIME,
+  Ankomsttid TIME,
+  CONSTRAINT StasjonPåRute_PK PRIMARY KEY (TogruteID, Stasjonsnavn),
+  CONSTRAINT StasjonPåRute_FK1 FOREIGN KEY (TogruteID) REFERENCES Togrute(TogruteID) ON UPDATE CASCADE,
+  CONSTRAINT StasjonPåRute_FK2 FOREIGN KEY (Stasjonsnavn) REFERENCES Stasjon(Navn) ON UPDATE CASCADE
+);
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-dag-man', 'Trondheim', "07:47", "07:49");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-dag-man', 'Steinkjer', "09:49", "09:51");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-dag-man', 'Mosjøen', "13:18", "13:20");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-dag-man','Mo i Rana', "14:29", "14:31");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-dag-man', 'Fauske', "16:47", "16:49");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-dag-man', 'Bodø', "17:34", NULL);
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-dag-tir', 'Trondheim', "07:47", "07:49");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-dag-tir', 'Steinkjer', "09:49", "09:51");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-dag-tir', 'Mosjøen', "13:18", "13:20");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-dag-tir','Mo i Rana', "14:29", "14:31");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-dag-tir', 'Fauske', "16:47", "16:49");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-dag-tir', 'Bodø', "17:34", NULL);
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-natt-man', 'Trondheim', "23:03", "23:05");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-natt-man', 'Steinkjer', "00:55", "00:57");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-natt-man', 'Mosjøen', "04:39", "04:41");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-natt-man','Mo i Rana', "05:53", "05:55");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-natt-man', 'Fauske', "08:17", "08:19");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-natt-man', 'Bodø',"09:05", NULL);
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-natt-tir', 'Trondheim', "23:03", "23:05");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-natt-tir', 'Steinkjer', "00:55", "00:57");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-natt-tir', 'Mosjøen', "04:39", "04:41");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-natt-tir','Mo i Rana', "05:53", "05:55");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-natt-tir', 'Fauske', "08:17", "08:19");
+INSERT INTO StasjonPåRute VALUES ('TRD-BOD-natt-tir', 'Bodø',"09:05", NULL);
+INSERT INTO StasjonPåRute VALUES ('MIR-TRD-mor-man', 'Mo i Rana', "08:09", "08:11");
+INSERT INTO StasjonPåRute VALUES ('MIR-TRD-mor-man', 'Mosjøen', "09:12", "09:14");
+INSERT INTO StasjonPåRute VALUES ('MIR-TRD-mor-man', 'Steinkjer', "12:29", "12:31");
+INSERT INTO StasjonPåRute VALUES ('MIR-TRD-mor-man', 'Trondheim', "14:13", NULL);
+INSERT INTO StasjonPåRute VALUES ('MIR-TRD-mor-tir', 'Mo i Rana', "08:09", "08:11");
+INSERT INTO StasjonPåRute VALUES ('MIR-TRD-mor-tir', 'Mosjøen', "09:12", "09:14");
+INSERT INTO StasjonPåRute VALUES ('MIR-TRD-mor-tir', 'Steinkjer', "12:29", "12:31");
+INSERT INTO StasjonPåRute VALUES ('MIR-TRD-mor-tir', 'Trondheim', "14:13", NULL);
 .quit
 
 
