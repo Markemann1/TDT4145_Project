@@ -35,7 +35,7 @@ def interface():
 def togrute_dag_stasjon():
     st=input("Skriv inn ønsket stasjon: ")
     dg=input("Skriv inn ønsket ukedag: ")
-    con = sqlite3.connect("../togdatabase.db")  
+    con = sqlite3.connect("../togdatabase.db")
     cursor=con.cursor()
     cursor.execute(f"SELECT DISTINCT Togrute.Rutenavn FROM Togrute INNER JOIN Delstrekning WHERE Avgangsdag='{dg}' AND (Delstrekning.Startstasjon='{st}' OR Delstrekning.Endestasjon='{st}')")
     rows=cursor.fetchall()
@@ -51,17 +51,52 @@ def togrute_to_stasjoner():
     st4=input("Klokkeslett: ")
     con = sqlite3.connect("../togdatabase.db")
     cursor=con.cursor()
-    cursor.execute(f"SELECT Togrute.Rutenavn, Avgangsdag, Avgangstid FROM Togrute INNER JOIN Delstrekning WHERE Delstrekning.startstasjon='{st1}' AND Delstrekning.endestasjon='{st2}' AND (Avngangsdag BETWEEN '{st3}' AND '{st3}'+'1 day') AND (Avgangstid BETWEEN '{st4}' AND '23:59)
+    cursor.execute(f"SELECT Togrute.Rutenavn, Avgangsdag, Avgangstid FROM Togrute INNER JOIN Delstrekning WHERE Delstrekning.startstasjon='{st1}' AND Delstrekning.endestasjon='{st2}' AND (Avngangsdag BETWEEN '{st3}' AND '{st3}'+'1 day') AND (Avgangstid BETWEEN '{st4}' AND '23:59')")
     rows=cursor.fetchall()
     con.close()
     print("Følgende togruter ble funnet:")
     print(rows)
+    return rows
 
 
 #def kunderegister():
     #Spørre om kunden vil logge inn eller registrere seg
     #Mulighet for å kjøpe billett
     #Mulighet for å se eksisterende kjøp
+
+
+def search_and_buy():
+    """
+    Registrerte kunder skal:
+    Finne ledige billetter for en valgt togrute
+    Og kjøpe hvilke billetter de vil
+    - også lagre det til deres kundenummer
+    """
+    togruter = togrute_to_stasjoner()
+    for row in togruter:
+        print(row)
+
+    # Prompt the user to select a row
+    selected_row = int(input("Enter the row number you want to select: "))
+
+    # Retrieve the selected row from the list
+    if selected_row > 0 and selected_row <= len(togruter):
+        reise = togruter[selected_row - 1]
+        print("Selected trainride:", reise)
+    else:
+        print("Invalid selection")
+
+
+    """Ta valget togruter[Reise-1], og finn frem ledige seter fra databasen"""
+    con = sqlite3.connect("../togdatabase.db")
+    cursor=con.cursor()
+    cursor.execute(f"SELECT Togrute.Rutenavn FROM Togrute WHERE Togrute.Rutenavn='{togruter[reise-1]}'")
+
+
+def myTickets():
+    """
+    En registrert kunde burde kunne skrive inn (kundenummeret?) sitt, og få alle fremtidige billetter linket til den brukeren
+    """
 
 
 #Kjører funksjonaliteten:
