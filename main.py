@@ -28,8 +28,8 @@ def interface():
         togrute_dag_stasjon() 
     elif valg=="2":
         togrute_to_stasjoner()
- #   elif valg=="3":
- #       kunderegister()
+    elif valg=="3":
+        kunderegister()
 
 
 def togrute_dag_stasjon():
@@ -56,7 +56,40 @@ def togrute_to_stasjoner():
     print(rows)
 
 
-#def kunderegister():
+def kunderegister():
+    ch1=input("Vil du logge inn (1) eller registrere deg (2)? ")
+    if ch1=='2':
+        nv=input("Hva er navnet ditt? ")
+        ep=input("Hva er e-posten din? ")
+        tlf=input("Hva er telefonnummeret ditt? ")
+        con = sqlite3.connect("../togdatabase.db")  
+        cursor=con.cursor()
+        cursor.execute("SELECT Kunde.Kundenummer FROM Kunde")
+        rows=cursor.fetchall()
+        if len(rows)==0:
+            knr=1
+        else:
+            knr=len(rows)+1
+        print(f"Kundenummeret ditt er {knr}. Bruk det for å logge inn senere.")
+        cursor.execute(f"INSERT INTO Kunde VALUES ({knr},'{nv}','{ep}',{tlf})")
+        con.commit()
+        con.close()
+    elif ch1=='1':
+        nv=input("Hva er kundenummeret ditt? ")
+        ch2=input("Velkommen tilbake! Hva ønsker du å gjøre?\n"
+        "1. Kjøpe togbilletter\n"
+        "2. Se tidligere kjøp\n")
+        if ch1=='1':
+            togr=input("Hva er togrute-ID-en til togruten du vil reise med?\n"
+            "Hvis du er usikker, skriv '1', så blir du sendt til søkefunksjonaliteten: ")
+            if togr=="1":
+                togrute_to_stasjoner()
+            st1=input("Hvor skal du reise fra? ")
+            st2=input("Hvor skal du reise til? ")
+            ant=input("Hvor mange billetter ønsker du? ")
+            
+
+        
     #Spørre om kunden vil logge inn eller registrere seg
     #Mulighet for å kjøpe billett
     #Mulighet for å se eksisterende kjøp
