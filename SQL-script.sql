@@ -11,6 +11,11 @@ INSERT INTO Delstrekning VALUES ("STK-MSJ", "03:29:00", 280, "enkeltspor", "Stei
 INSERT INTO Delstrekning VALUES ("MSJ-MIR", "01:11:00", 90, "enkeltspor", "Mosjøen", "Mo I Rana");
 INSERT INTO Delstrekning VALUES ("MIR-FSK", "02:18:00", 170, "enkeltspor", "Mo I Rana", "Fauske");
 INSERT INTO Delstrekning VALUES ("FSK-BOD", "00:45:00", 60, "enkeltspor", "Fauske", "Bodø");
+INSERT INTO Delstrekning VALUES ("STK-TRD", "01:52:00", 120, "dobbeltspor", "Steinkjer","Trondheim");
+INSERT INTO Delstrekning VALUES ("MSJ-STK", "03:29:00", 280, "enkeltspor", "Mosjøen","Steinkjer");
+INSERT INTO Delstrekning VALUES ("MIR-MSJ", "01:11:00", 90, "enkeltspor", "Mo I Rana","Mosjøen");
+INSERT INTO Delstrekning VALUES ("FSK-MIR", "02:18:00", 170, "enkeltspor", "Fauske","Mo I Rana");
+INSERT INTO Delstrekning VALUES ("BOD-FSK", "00:45:00", 60, "enkeltspor", "Bodø","Fauske");
 INSERT INTO Stasjon VALUES ("Trondheim", 5);
 INSERT INTO Stasjon VALUES ("Steinkjer", 4);
 INSERT INTO Stasjon VALUES ("Mosjøen", 7);
@@ -60,9 +65,9 @@ INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt-man", "MIR-FSK");
 INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt-man", "MSJ-MIR");
 INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt-man", "STK-MSJ");
 INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt-man", "TRD-STK");
-INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-man", "TRD-STK");
-INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-man", "STK-MSJ");
-INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-man", "MSJ-MIR");
+INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-man", "STK-TRD");
+INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-man", "MSJ-STK");
+INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-man", "MIR-MSJ");
 INSERT INTO Togruteforekomst VALUES ("MIR-TRD-mor-man", "03.04.2023");
 INSERT INTO Togrute VALUES ("MIR-TRD-mor-tir", "Morgentog Mo i Rana - Trondheim", "08:11:00", "Tirsdag", "Mo i Rana", "Trondheim", "SJ", "Nordlandsbanen");
 INSERT INTO Togrute VALUES ("TRD-BOD-dag-tir", "Dagtog Trondheim-Bodø", "07:49:00", "Tirsdag", "Trondheim", "Bodø", "SJ", "Nordlandsbanen");
@@ -80,9 +85,9 @@ INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt-tir", "MIR-FSK");
 INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt-tir", "MSJ-MIR");
 INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt-tir", "STK-MSJ");
 INSERT INTO StrekningIRute VALUES ("TRD-BOD-natt-tir", "TRD-STK");
-INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-tir", "TRD-STK");
-INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-tir", "STK-MSJ");
-INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-tir", "MSJ-MIR");
+INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-tir", "STK-TRD");
+INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-tir", "MSJ-STK");
+INSERT INTO StrekningIRute VALUES ("MIR-TRD-mor-tir", "MIR-MSJ");
 .quit
 
 
