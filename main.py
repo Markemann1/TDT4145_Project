@@ -47,9 +47,11 @@ def togrute_dag_stasjon():
 def togrute_to_stasjoner():
     st1=input("Skriv inn ønsket startstasjon: ")
     st2=input("Skriv inn ønsket endestasjon: ")
+    st3=input("Dato: ")
+    st4=input("Klokkeslett: ")
     con = sqlite3.connect("../togdatabase.db")
     cursor=con.cursor()
-    cursor.execute(f"SELECT * FROM Togrute INNER JOIN Delstrekning WHERE (Delstrekning.startstasjon='{st1}' AND Delstrekning.endestasjon='{st2}') OR (Delstrekning.startstasjon='{st2}' AND Delstrekning.endestasjon='{st1}')")
+    cursor.execute(f"SELECT Togrute.Rutenavn, Avgangsdag, Avgangstid FROM Togrute INNER JOIN Delstrekning WHERE Delstrekning.startstasjon='{st1}' AND Delstrekning.endestasjon='{st2}' AND (Avngangsdag BETWEEN '{st3}' AND '{st3}'+'1 day') AND (Avgangstid BETWEEN '{st4}' AND '23:59)
     rows=cursor.fetchall()
     con.close()
     print("Følgende togruter ble funnet:")
