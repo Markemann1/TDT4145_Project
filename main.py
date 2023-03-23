@@ -64,7 +64,6 @@ def togrute_to_stasjoner():
     #Mulighet for å kjøpe billett
     #Mulighet for å se eksisterende kjøp
 
-
 def search_and_buy():
     """
     Registrerte kunder skal:
