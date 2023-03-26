@@ -87,17 +87,20 @@ def kunderegister():
         con.close()
     elif ch1=='1':
         nv=input("Hva er kundenummeret ditt? ")
-        ch2=input("Velkommen tilbake! Hva ønsker du å gjøre?\n"
-        "1. Kjøpe togbilletter\n"
-        "2. Se tidligere kjøp\n")
+        print("Velkommen tilbake! Hva ønsker du å gjøre?\n")
+        ch3 = input("1. Kjøpe togbilletter\n")
+        ch4 = input("2. Se tidligere kjøp\n")
+        if ch4 == "2":
+            myTickets()
+
         if ch1=='1':
             togr=input("Hva er togrute-ID-en til togruten du vil reise med?\n"
             "Hvis du er usikker, skriv '1', så blir du sendt til søkefunksjonaliteten: ")
             if togr=="1":
-                togrute_to_stasjoner()
-            st1=input("Hvor skal du reise fra? ")
-            st2=input("Hvor skal du reise til? ")
-            ant=input("Hvor mange billetter ønsker du? ")
+                search_and_buy(nv)
+            # st1=input("Hvor skal du reise fra? ")
+            # st2=input("Hvor skal du reise til? ")
+            # ant=input("Hvor mange billetter ønsker du? ")
 
 
         
@@ -118,7 +121,7 @@ def kunderegister():
     #Mulighet for å kjøpe billett
     #Mulighet for å se eksisterende kjøp
 
-def search_and_buy():
+def search_and_buy(Kundenummer):
     """
     Registrerte kunder skal:
     Finne ledige billetter for en valgt togrute
@@ -167,7 +170,7 @@ def search_and_buy():
             f"UPDATE Togrute SET Tilgjengelige_plasser = Tilgjengelige_plasser - {antall_billetter} WHERE Rutenavn = '{chosen_route}'")
         con.commit()
         cursor.execute(
-            f"INSERT INTO Billett (KundeID, Rutenavn, Antall_billetter) VALUES ({customer_id}, '{chosen_route}', {antall_billetter})")
+            f"INSERT INTO Billett (KundeID, Rutenavn, Antall_billetter) VALUES ({Kundenummer}, '{chosen_route}', {antall_billetter})")
         con.commit()
         print(f"{antall_billetter} tickets for {chosen_route} have been purchased!")
     else:
