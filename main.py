@@ -146,10 +146,55 @@ def search_and_buy():
     cursor.execute(f"SELECT Togrute.Rutenavn FROM Togrute WHERE Togrute.Rutenavn='{togruter[reise-1]}'")
 
 
+    customer_id = input("Enter your customer ID: ")
+    togruter = ["Oslo-Trondheim", "Bergen-Stavanger", "Kristiansand-Oslo", "Trondheim-Bodø"]
+    print("Choose a train route:")
+    for i, rute in enumerate(togruter):
+        print(f"{i + 1}. {rute}")
+    reise = int(input("Enter the route number you want to buy tickets for: "))
+    chosen_route = togruter[reise - 1]
+    antall_billetter = int(input("Enter the number of tickets you want to buy: "))
+
+    con = sqlite3.connect("../togdatabase.db")
+    cursor = con.cursor()
+
+    cursor.execute(f"SELECT Sete INNER JOIN NOT SeteOpptatt FROM Billett WHERE Togrute.Rutenavn='{chosen_route}'")
+    result = cursor.fetchone()
+    available_seats = result[0]
+
+    if available_seats >= antall_billetter:
+        cursor.execute(
+            f"UPDATE Togrute SET Tilgjengelige_plasser = Tilgjengelige_plasser - {antall_billetter} WHERE Rutenavn = '{chosen_route}'")
+        con.commit()
+        cursor.execute(
+            f"INSERT INTO Billett (KundeID, Rutenavn, Antall_billetter) VALUES ({customer_id}, '{chosen_route}', {antall_billetter})")
+        con.commit()
+        print(f"{antall_billetter} tickets for {chosen_route} have been purchased!")
+    else:
+        print(f"Sorry, there are only {available_seats} seats available for {chosen_route}.")
+
+    cursor.close()
+    con.close()
+
+
 def myTickets():
-    """
-    En registrert kunde burde kunne skrive inn (kundenummeret?) sitt, og få alle fremtidige billetter linket til den brukeren
-    """
+
+    Kundenummer = input("Hva er kundenummeret ditt? ")
+
+    con = sqlite3.connect("database.db")
+    cursor = con.cursor()
+
+
+    # Select all purchases made by the customer for future trips
+    cursor.execute(f"SELECT * FROM Purchases WHERE Kunde.Kundenummer={Kundenummer} AND TripDate > date('now')")
+
+    # Fetch all results
+    results = cursor.fetchall()
+
+    # Close the database connection
+    con.close()
+
+    return results
 
 
 #Kjører funksjonaliteten:
